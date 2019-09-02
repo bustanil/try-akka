@@ -13,11 +13,7 @@ import lombok.Getter;
 import lombok.ToString;
 
 import java.io.IOException;
-import java.util.UUID;
 
-/**
- * Hello world!
- */
 public class App {
     public static void main(String[] args) throws IOException {
         ActorSystem actorSystem = ActorSystem.create("payment");
