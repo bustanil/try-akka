@@ -21,7 +21,7 @@ public class App {
         ActorRef paymentProcessor = actorSystem.actorOf(PaymentProcessor.props(), "payment-processor");
 
         for (int i = 0; i < 20; i++) {
-            paymentProcessor.tell(new PaymentProcessor.ProcessPayment("request-" + i), ActorRef.noSender());
+            paymentProcessor.tell(new PaymentProcessor.ProcessPayment("request-" + i, System.currentTimeMillis()), ActorRef.noSender());
         }
         paymentProcessor.tell(PoisonPill.getInstance(), ActorRef.noSender());
         System.in.read();
@@ -40,6 +40,7 @@ class PaymentProcessor extends AbstractActor {
     @ToString
     public static class ProcessPayment {
         private String requestId;
+        private long startMillis;
     }
 
     @Override public void preStart() throws Exception {
